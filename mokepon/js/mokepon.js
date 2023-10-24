@@ -4,10 +4,9 @@ let vidasJugador = 3
 let vidasEnemigo = 3
 
 function iniciarJuego(){
-    console.log(1)
+
     let botonMascotaJugador = document.getElementById('boton-mascota')
     botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
-    console.log(2)
     let botonFuego = document.getElementById('boton-fuego')
     botonFuego.addEventListener('click',ataqueFuego)
     let botonAgua = document.getElementById('boton-agua')
