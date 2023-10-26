@@ -74,29 +74,29 @@ function ataqueAleatorioEnemigo (){
     } else {
         ataqueEnemigo = 'Tierra'
     }
-    crearMensaje()
+    combate ()
 }
 
-function combate (ataqueJugador, ataqueEnemigo){
-    let partida = ""
+function combate (){
     let spanVidasJugador = document.getElementById('vidas-jugador')
     let spanVidasEnemigo = document.getElementById('vidas-enemigo')
 
     if (ataqueJugador == ataqueEnemigo){
-        partida = "Empataste!"
+        crearMensaje ("Empataste!")
     } else if (ataqueJugador == 'Fuego' && ataqueEnemigo == 'Tierra'|| ataqueJugador == 'Agua' && ataqueEnemigo == 'Fuego' || ataqueJugador == 'Tierra' && ataqueEnemigo == 'Agua'){
-        partida = "Ganaste! 🏆"
+        crearMensaje ("Ganaste! 🏆")
         vidasEnemigo--
         spanVidasEnemigo.innerHTML = vidasEnemigo
     } else {
-        partida = "Perdiste! 😩"
+        crearMensaje ("Perdiste! 😩")
         vidasJugador--
         spanVidasJugador.innerHTML = vidasJugador
      }
+    
     revisarVidas ()
-    return partida
-
 }
+
+console.log(8)
 
 function revisarVidas (){
     if (vidasEnemigo == 0) {
@@ -106,13 +106,11 @@ function revisarVidas (){
     }
 }
 
-console.log(8)
-
-function crearMensaje() {
+function crearMensaje(resultado) {
     let sectionMensajes = document.getElementById('mensajes')
 
     let parrafo = document.createElement('p')
-    parrafo.innerHTML= 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueEnemigo + ", "+combate(ataqueJugador,ataqueEnemigo)
+    parrafo.innerHTML= 'Tu mascota atacó con ' + ataqueJugador + ', la mascota del enemigo atacó con ' + ataqueEnemigo + ", "+ resultado
 
     sectionMensajes.appendChild(parrafo)
 }
