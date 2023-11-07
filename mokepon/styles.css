@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+body {
+    font-family: 'Bree Serif', serif;
+    background-image: url(./assets/background.png);
+}
+
+#seleccionar-mascota {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo {
+    color: whitesmoke;
+    font-size: 80px;
+}
+
+.subtitulo {
+    color: aliceblue;
+    font-size: 30px;
+}
+
+.tarjetas {
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    font-size: 30px;
+    margin: 70px;
+
+}
+
+.tarjeta-de-mokepon {
+width: 300px;
+height: 200px;
+padding: 40px;
+box-sizing: border-box;
+border-radius: 20px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+color: white
+}
+
+.tarjeta-de-mokepon img {
+    width: 200px;
+    border-radius: 20px;
+}
+input {
+    display: none;
+}
