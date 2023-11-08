@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Poppins:wght@300&display=swap');
 
 body {
-    font-family: 'Bree Serif', serif;
+    font-family: 'Poppins', sans-serif;
     background-image: url(./assets/background.png);
+    background-size: cover;
 }
 
 #seleccionar-mascota {
@@ -48,6 +49,18 @@ color: white
     width: 200px;
     border-radius: 20px;
 }
+
+#boton-mascota {
+    width: 180px;
+    height: 40px;
+    border-radius: 20px;
+    background: transparent;
+    border: 3px solid white;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px
+}
+
 input {
     display: none;
 }
