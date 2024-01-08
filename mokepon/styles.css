@@ -2,7 +2,7 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background-image: url(./assets/background.png);
+    background-image: url(./assets/background2.png);
     background-size: cover;
 }
 
@@ -16,6 +16,11 @@ body {
 .titulo {
     color: whitesmoke;
     font-size: 80px;
+    width: 200px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .subtitulo {
@@ -33,10 +38,9 @@ body {
 }
 
 .tarjeta-de-mokepon {
-width: 300px;
-height: 200px;
-padding: 40px;
-box-sizing: border-box;
+width: 200px;
+height: 300px;
+box-sizing: border-box;border-right: 50px;border-left: 50px;
 border-radius: 20px;
 display: flex;
 flex-direction: column;
@@ -65,8 +69,16 @@ input {
     display: none;
 }
 
+input:hover + label {
+    background-color:#00afb9;
+    width: 250px
+
+}
 input:checked + label{
-    background-color: black;
+    background-color:#7209b7;
+    border-radius: 5%;
+    height: 210px;
+    
 }
 
 #seleccionar-ataque {
@@ -78,20 +90,22 @@ input:checked + label{
     width: 100px;
     height: 40px;
     border-radius: 20px;
-    background: transparent;
+    background: #00afb9;
     border: 3px solid white;
     color: white;
     font-family: 'Poppins', sans-serif;
     margin-top: 30px
 }
+
 #mensajes {
     display: flex;
     justify-content: flex-start;
     width: 280px;
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
     border-radius: 20px;
-    background: transparent;
+    background: #118ab2;
     border: 3px solid white;
     flex-direction: column;
     align-content: center;
@@ -102,7 +116,7 @@ input:checked + label{
     width: 100px;
     height: 40px;
     border-radius: 20px;
-    background: transparent;
+    background: #118ab2;
     border: 3px solid white;
     color: white;
     font-family: 'Poppins', sans-serif;
@@ -111,12 +125,11 @@ input:checked + label{
 .ataques {
     display: grid;
     grid-template-columns: 100px 100px;
-    background: transparent;
+    background: #073b4c;
     border-radius: 20px;
     text-align: center;
     color: white
 }
-
 .ataques-jugador, .ataques-enemigo {
     display:flex;
     flex-direction: column;
