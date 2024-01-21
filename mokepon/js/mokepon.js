@@ -7,11 +7,8 @@ const botonTierra = document.getElementById('boton-tierra')
 const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionseleccionarMascota = document.getElementById('seleccionar-mascota')
-const inputHipodoge = document.getElementById('hipodoge')
-const inputCapipego = document.getElementById('capipego')
-const inputRatigueya = document.getElementById('ratigueya')
-const spanMascotaJugador = document.getElementById('mascota-jugador')
 
+const spanMascotaJugador = document.getElementById('mascota-jugador')
 const spanMascotaEnemigo = document.getElementById('mascota-enemigo')
 
 const spanVidasJugador = document.getElementById('vidas-jugador')
@@ -26,6 +23,9 @@ let mokepones = []
 let ataqueJugador
 let ataqueEnemigo
 let opcionDeMokepones
+let inputHipodoge
+let inputCapipego
+let inputRatigueya
 
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -75,13 +75,17 @@ function iniciarJuego(){
 
     mokepones.forEach((mokepon) => {
         opcionDeMokepones = `
-        <input type="radio" name="mascota" id="${mokepon.nombre}"/>
-        <label class ="tarjeta-de-mokepon" for= "${mokepon.nombre}">
+        <input type="radio" name="mascota" id=${mokepon.nombre} />
+        <label class="tarjeta-de-mokepon" for=${mokepon.nombre}>
             <P>${mokepon.nombre}</P>
-            <img src=${mokepon.foto} alt="${mokepon.nombre}">
+            <img src=${mokepon.foto} alt=${mokepon.nombre}>
         </label>
         `
     contenedorTarjetas.innerHTML += opcionDeMokepones 
+    
+    inputHipodoge = document.getElementById('Hipodoge')
+    inputCapipego = document.getElementById('Capipego')
+    inputRatigueya = document.getElementById('Ratigueya')
 
     })
     
@@ -103,9 +107,9 @@ function seleccionarMascotaJugador(){
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = 'Hipodoge'
     } else if (inputCapipego.checked){
-        spanMascotaJugador.innerHTML = 'capipego'
+        spanMascotaJugador.innerHTML = 'Capipego'
     } else if (inputRatigueya.checked){
-        spanMascotaJugador.innerHTML = 'ratigueya'
+        spanMascotaJugador.innerHTML = 'Ratigueya'
     } else {
         alert("Selecciona una mascota")
     }
