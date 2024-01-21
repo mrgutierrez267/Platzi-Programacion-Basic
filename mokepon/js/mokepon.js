@@ -1,10 +1,6 @@
 const sectionseleccionarAtaque = document.getElementById('seleccionar-ataque')
 const sectionReiniciar = document.getElementById('reiniciar')
 const botonMascotaJugador = document.getElementById('boton-mascota')
-const botonFuego = document.getElementById('boton-fuego')
-const botonAgua = document.getElementById('boton-agua')
-const botonTierra = document.getElementById('boton-tierra')
-const botonReiniciar = document.getElementById('boton-reiniciar')
 
 const sectionseleccionarMascota = document.getElementById('seleccionar-mascota')
 
@@ -18,6 +14,7 @@ const sectionMensajes = document.getElementById('resultado')
 const ataquesDelJugador = document.getElementById('ataques-del-jugador')
 const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
+const contenedorAtaques = document.getElementById('contenedorAtaques')
 
 let mokepones = []
 let ataqueJugador
@@ -26,6 +23,12 @@ let opcionDeMokepones
 let inputHipodoge
 let inputCapipego
 let inputRatigueya
+let mascotaJugador
+let ataquesMokepon
+let botonFuego
+let botonAgua
+let botonTierra
+let botonReiniciar
 
 let vidasJugador = 3
 let vidasEnemigo = 3
@@ -92,10 +95,6 @@ function iniciarJuego(){
     sectionseleccionarAtaque.style.display = 'none'
     sectionReiniciar.style.display = 'none'
     botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
-    botonFuego.addEventListener('click',ataqueFuego)
-    botonAgua.addEventListener('click',ataqueAgua)
-    botonTierra.addEventListener('click',ataqueTierra)
-    botonReiniciar.addEventListener('click',reiniciarJuego)
 }
 
 function seleccionarMascotaJugador(){
@@ -106,23 +105,54 @@ function seleccionarMascotaJugador(){
     console.log(4)    
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
+        mascotaJugador = inputHipodoge.id
     } else if (inputCapipego.checked){
         spanMascotaJugador.innerHTML = inputCapipego.id
+        mascotaJugador = inputCapipego.id
     } else if (inputRatigueya.checked){
         spanMascotaJugador.innerHTML = inputRatigueya.id
+        mascotaJugador = inputRatigueya.id
     } else {
         alert("Selecciona una mascota")
     }
 
+    extraerAtaques(mascotaJugador)
     seleccionarMascotaEnemigo()
 }
-console.log(5)
+function extraerAtaques(mascotaJugador){
+    let ataques
+    for (let i = 0; i < mokepones.length; i++) {
+        if (mascotaJugador === mokepones[i].nombre) {
+            ataques = mokepones[i].ataques
+        }
+    }
+    mostrarAtaques(ataques)
+}
+
+function mostrarAtaques(ataques){
+    ataques.forEach((ataque) => {
+        ataquesMokepon = `
+        <button id=${ataque.id} class="boton-de-ataque">${ataque.nombre} </button>
+        `
+        contenedorAtaques.innerHTML += ataquesMokepon
+    })
+
+    botonFuego = document.getElementById('boton-fuego')
+    botonAgua = document.getElementById('boton-agua')
+    botonTierra = document.getElementById('boton-tierra')
+    botonReiniciar = document.getElementById('boton-reiniciar')
+
+    botonFuego.addEventListener('click',ataqueFuego)
+    botonAgua.addEventListener('click',ataqueAgua)
+    botonTierra.addEventListener('click',ataqueTierra)
+    botonReiniciar.addEventListener('click',reiniciarJuego)
+}
+
 function seleccionarMascotaEnemigo(){
     let MascotaAleatoria = aleatorio(0, mokepones.length -1)
     
     spanMascotaEnemigo.innerHTML = mokepones[MascotaAleatoria].nombre
 }
-console.log(6)
 
 function ataqueFuego() {
     ataqueJugador = 'Fuego'
@@ -137,7 +167,6 @@ function ataqueTierra() {
     ataqueAleatorioEnemigo()
 }
 
-console.log(7)
 function ataqueAleatorioEnemigo (){
     let ataqueAleatorio = aleatorio (1,3)
     let spanAtaqueEnemigo = document.getElementById('ataque-enemigo')
@@ -168,8 +197,6 @@ function combate (){
     
     revisarVidas ()
 }
-
-console.log(8)
 
 function revisarVidas (){
     if (vidasEnemigo == 0) {
@@ -204,9 +231,7 @@ function reiniciarJuego (){
     location.reload()
 }
 
-console.log(9)
 function aleatorio(min, max) {
         return Math.floor(Math.random()*(max-min + 1) + min)
 }
-console.log(10)
 window.addEventListener('load',iniciarJuego)
