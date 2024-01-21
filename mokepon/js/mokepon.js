@@ -105,11 +105,11 @@ function seleccionarMascotaJugador(){
 
     console.log(4)    
     if (inputHipodoge.checked) {
-        spanMascotaJugador.innerHTML = 'Hipodoge'
+        spanMascotaJugador.innerHTML = inputHipodoge.id
     } else if (inputCapipego.checked){
-        spanMascotaJugador.innerHTML = 'Capipego'
+        spanMascotaJugador.innerHTML = inputCapipego.id
     } else if (inputRatigueya.checked){
-        spanMascotaJugador.innerHTML = 'Ratigueya'
+        spanMascotaJugador.innerHTML = inputRatigueya.id
     } else {
         alert("Selecciona una mascota")
     }
