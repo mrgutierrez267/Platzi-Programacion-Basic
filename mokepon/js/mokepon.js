@@ -48,6 +48,7 @@ let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
 let lienzo = mapa.getContext("2d")
+let intervalo
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -61,6 +62,8 @@ class Mokepon {
         this.alto = 80
         this.mapaFoto = new Image()
         this.mapaFoto.src = foto
+        this.velocidadX = 0
+        this.velocidadY = 0
     }
 }
 
@@ -150,7 +153,7 @@ function seleccionarMascotaJugador(){
 
     sectionseleccionarMascota.style.display = 'none'
     sectionVerMapa.style.display ='flex'
-  
+    intervalo = setInterval(pintarPersonaje, 50)
     
 
 
@@ -227,8 +230,6 @@ function secuenciaAtaque() {
         })
     })
 }
-
-
 
 function seleccionarMascotaEnemigo(){
     let MascotaAleatoria = aleatorio(0, mokepones.length -1)
@@ -348,12 +349,25 @@ function aleatorio(min, max) {
         return Math.floor(Math.random()*(max-min + 1) + min)
 }
 
-function moverCapipego(){
-    capipego.x = capipego.x + 5
-    pintarPersonaje()
+function moverDerecha(){
+    capipego.velocidadX = 5
+}
+
+function moverIzquierda(){
+    capipego.velocidadX = -5
+}
+
+function moverAbajo(){
+    capipego.velocidadY = 5
+}
+
+function moverArriba(){
+    capipego.velocidadY = -5
 }
 
 function pintarPersonaje(){
+    capipego.x = capipego.x + capipego.velocidadX
+    capipego.y = capipego.y + capipego.velocidadY
     lienzo.clearRect(0,0,mapa.width,mapa.height)
     lienzo.drawImage(
         capipego.mapaFoto,
@@ -362,4 +376,10 @@ function pintarPersonaje(){
         capipego.ancho,
         capipego.alto)
 }
+
+function detenerMovimiento(){
+    capipego.velocidadX = 0
+    capipego.velocidadY = 0
+}
+
 window.addEventListener('load',iniciarJuego)
