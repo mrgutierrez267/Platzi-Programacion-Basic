@@ -19,8 +19,8 @@ const ataquesDelEnemigo = document.getElementById('ataques-del-enemigo')
 const contenedorTarjetas = document.getElementById('contenedorTarjetas')
 const contenedorAtaques = document.getElementById('contenedorAtaques')
 
-//const sectionVerMapa = document.getElementById('ver-mapa')
-//const mapa = document.getElementById('mapa')
+const sectionVerMapa = document.getElementById('ver-mapa')
+const mapa = document.getElementById('mapa')
 
 let mokepones = []
 let ataqueJugador = []
@@ -47,7 +47,7 @@ let victoriasJugador = 0
 let victoriasEnemigo = 0
 let vidasJugador = 3
 let vidasEnemigo = 3
-//let lienzo = mapa.getcontext("2d")
+let lienzo = mapa.getContext("2d")
 
 class Mokepon {
     constructor(nombre, foto, vida) {
@@ -55,6 +55,12 @@ class Mokepon {
         this.foto = foto
         this.vida = vida
         this.ataques = []
+        this.x =20
+        this.y =30
+        this.ancho = 80
+        this.alto = 80
+        this.mapaFoto = new Image()
+        this.mapaFoto.src = foto
     }
 }
 
@@ -112,8 +118,10 @@ mokepones.push(hipodoge,capipego,ratigueya,dragon,picachu)
 
 function iniciarJuego(){
 
-    //sectionVerMapa.style.display ='none'
-    //sectionseleccionarAtaque.style.display ='none'
+   
+    sectionseleccionarAtaque.style.display ='none'
+    sectionVerMapa.style.display ='none'
+    sectionReiniciar.style.display = 'none'
 
     
     mokepones.forEach((mokepon) => {
@@ -134,18 +142,20 @@ function iniciarJuego(){
 
     })
     
-    sectionseleccionarAtaque.style.display = 'none'
-    sectionReiniciar.style.display = 'none'
     botonMascotaJugador.addEventListener('click',seleccionarMascotaJugador)
+
 }
 
 function seleccionarMascotaJugador(){
 
     sectionseleccionarMascota.style.display = 'none'
-    sectionseleccionarAtaque.style.display = 'flex'
-    //sectionVerMapa.style.display ='flex'
-    //lienzo.fillrect(5,15,20,40)
+    sectionVerMapa.style.display ='flex'
+  
+    
 
+
+    //sectionseleccionarAtaque.style.display = 'flex'
+   
     if (inputHipodoge.checked) {
         spanMascotaJugador.innerHTML = inputHipodoge.id
         mascotaJugador = inputHipodoge.id
@@ -336,5 +346,20 @@ function reiniciarJuego (){
 
 function aleatorio(min, max) {
         return Math.floor(Math.random()*(max-min + 1) + min)
+}
+
+function moverCapipego(){
+    capipego.x = capipego.x + 5
+    pintarPersonaje()
+}
+
+function pintarPersonaje(){
+    lienzo.clearRect(0,0,mapa.width,mapa.height)
+    lienzo.drawImage(
+        capipego.mapaFoto,
+        capipego.x,
+        capipego.y,
+        capipego.ancho,
+        capipego.alto)
 }
 window.addEventListener('load',iniciarJuego)
