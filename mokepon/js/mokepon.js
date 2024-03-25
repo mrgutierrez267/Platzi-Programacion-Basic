@@ -54,31 +54,51 @@ let mapaBrackground = new Image()
 mapaBrackground.src = './assets/mokeponmap.png'
 
 class Mokepon {
-    constructor(nombre, foto, vida) {
+    constructor(nombre, foto, vida, fotoMapa, x = 360, y = 180) {
         this.nombre = nombre
         this.foto = foto
         this.vida = vida
         this.ataques = []
-        this.x =350
-        this.y =250
+        this.x = x
+        this.y = y
         this.ancho = 80
         this.alto = 80
         this.mapaFoto = new Image()
-        this.mapaFoto.src = foto
+        this.mapaFoto.src = fotoMapa
         this.velocidadX = 0
         this.velocidadY = 0
     }
+
+    pintarMokepon(){
+        lienzo.drawImage(
+            this.mapaFoto,
+            this.x,
+            this.y,
+            this.ancho,
+            this.alto
+            )
+    }
 }
 
-let hipodoge = new Mokepon('Hipodoge','./assets/hipodogeFire.png',5)
+let hipodoge = new Mokepon('Hipodoge','./assets/hipodogeFireataque.png',5, './assets/hipodoge.png')
 
-let capipego = new Mokepon('Capipego','./assets/capipegoWater.png',5)
+let capipego = new Mokepon('Capipego','./assets/capipegoWaterataque.png',5,'./assets/capipego.png')
 
-let ratigueya = new Mokepon('Ratigueya','./assets/ratigueyaEarth.png',5)
+let ratigueya = new Mokepon('Ratigueya','./assets/ratigueyaEarthataque.png',5,'./assets/ratigueya.png')
 
-let dragon = new Mokepon('Dragon','./assets/dragonElectric.png',5)
+let dragon = new Mokepon('Dragon','./assets/dragonElectricataque.png',5,'./assets/dragonelectric.png')
 
-let picachu = new Mokepon('Picachu','./assets/picachuRayo.png',5)
+let picachu = new Mokepon('Picachu','./assets/picachuRayoataque.png',5,'./assets/picachurayo.png')
+
+let hipodogeEnemigo = new Mokepon('Hipodoge','./assets/hipodogeFireataque.png',5, './assets/hipodoge.png', 80, 120)
+
+let capipegoEnemigo = new Mokepon('Capipego','./assets/capipegoWaterataque.png',5,'./assets/capipego.png',600, 90)
+
+let ratigueyaEnemigo = new Mokepon('Ratigueya','./assets/ratigueyaEarthataque.png',5,'./assets/ratigueya.png', 360, 300)
+
+let dragonEnemigo = new Mokepon('Dragon','./assets/dragonElectricataque.png',5,'./assets/dragonelectric.png', 600, 400)
+
+let picachuEnemigo = new Mokepon('Picachu','./assets/picachuRayoataque.png',5,'./assets/picachurayo.png', 80, 400)
 
 hipodoge.ataques.push(
     {nombre:'💦',id:'boton-agua'},
@@ -376,14 +396,12 @@ function pintarCanvas(){
         mapa.width,
         mapa.height
         )
-
-    lienzo.drawImage(
-        mascotaJugadorObjeto.mapaFoto,
-        mascotaJugadorObjeto.x,
-        mascotaJugadorObjeto.y,
-        mascotaJugadorObjeto.ancho,
-        mascotaJugadorObjeto.alto
-        )
+        mascotaJugadorObjeto.pintarMokepon()
+        hipodogeEnemigo.pintarMokepon()
+        capipegoEnemigo.pintarMokepon()
+        ratigueyaEnemigo.pintarMokepon()
+        dragonEnemigo.pintarMokepon()
+        picachuEnemigo.pintarMokepon()
 }
 
 function detenerMovimiento(){
@@ -431,3 +449,4 @@ function obtenerObjetoMascota(){
 }
 
 window.addEventListener('load',iniciarJuego)
+
